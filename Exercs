@@ -1,0 +1,148 @@
+
+package atividade1;
+import java.util.Scanner;
+/**
+ *
+ * @author Lucas
+ */
+public class Atividade1 {
+
+    private int vet[];
+    
+    public Atividade1(int capMax)
+    {
+        vet=new int[capMax];
+    }
+    
+    public void Guardar(int i, int e)
+    {
+        vet[i]=e;
+    }
+    
+    public int Capacidade()
+    {
+       return vet.length; 
+    }
+    
+    public void Exibe(int[] print)
+    {
+        for (int i=0;i<Capacidade();i++)
+        {
+            System.out.println("X["+i+"] = "+print[i]);
+        }
+    }
+
+//Exercicio 1172    
+    public void exerc1()
+    {
+        Scanner ler = new Scanner(System.in);
+        int i,n;
+        for(i=0;i<Capacidade();i++)
+        {
+            System.out.println("Digite o "+(i+1)+"º Numero: ");
+            n=ler.nextInt();
+            Guardar(i,n);
+        }
+    }
+    
+    public void Subs(int[] subs)
+    {
+        for(int i=0;i<Capacidade();i++)
+        {
+            if(subs[i]<=0)
+                subs[i]=1;
+        }
+    }
+//Exercicio 1173
+    public void exerc2()
+    {
+        Scanner ler = new Scanner(System.in);
+        int i,n;
+        System.out.println("Digite o 1º Valor: ");
+        n=ler.nextInt();
+        Guardar(0,n);
+        for(i=1;i<Capacidade();i++)
+        {
+            vet[i]=vet[i-1]*2;
+        }
+    }
+//Exercicio 1174
+    public void exerc3()
+    {
+        int i,n;
+        for(i=0;i<Capacidade();i++)
+        {
+            n=(int)(Math.random()*25);
+            Guardar(i,n);
+        }
+    }
+    public void Exibe2(int[] print)
+    {
+        for (int i=0;i<Capacidade();i++)
+        {
+            if(print[i]<=10)
+                System.out.println("X["+i+"] = "+print[i]);
+        }
+    }
+//Exercicio 1175
+    public void exerc5()
+    {
+        int i,n;
+        Scanner ler = new Scanner(System.in);
+        for(i=0;i<Capacidade();i++)
+        {
+            n=ler.nextInt();
+            //(int)(Math.random()*25);
+            Guardar(i,n);
+        }
+    }
+    public void invert(int[]inve)
+    {
+        int esq=0,dir=0;
+        for(int i=0;i<(Capacidade()/2);i++)
+        {
+            dir=(Capacidade()-1)-i;
+            esq=inve[i];
+            inve[i]=inve[dir];
+            inve[dir]=esq;
+        }
+    }
+    
+    public static void main(String[] args) 
+    {
+        Atividade1 a1=new Atividade1(10);
+        Atividade1 a2=new Atividade1(100);
+        Atividade1 a3=new Atividade1(20);
+        
+        Scanner le = new Scanner(System.in);
+        System.out.println("Digite o numero do Exercicio: ");
+        int ex=le.nextInt();
+        switch(ex)
+        {
+            case 1172:
+                a1.exerc1();
+                a1.Subs(a1.vet);
+                a1.Exibe(a1.vet);
+            break;
+            
+            case 1173:
+                a1.exerc2();
+                a1.Exibe(a1.vet);
+            break;
+            
+            case 1174:
+                a2.exerc3();
+                a2.Exibe2(a2.vet);
+            break;
+            
+            case 1175:
+                a3.exerc5();
+                a3.invert(a3.vet);
+                a3.Exibe(a3.vet);
+            break;
+            
+            default: System.out.println("Exercicio não encontrado");
+            break;
+        }
+    }    
+}
