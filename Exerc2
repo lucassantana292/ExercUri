@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
  *
  * @author lucas.santana
  */
+ // autores: Lucas Moreira Santana, Ian Santos, Thais Vieira
 public class Atividade2 
 {
     private int vet1[];    
