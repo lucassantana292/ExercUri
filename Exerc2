@@ -1,0 +1,127 @@
+
+import javax.swing.JOptionPane;
+/**
+ *
+ * @author lucas.santana
+ */
+public class Atividade2 
+{
+    private int vet1[];    
+    private int tam;
+    //Inteiro
+    public Atividade2(int capMax)
+    {
+        vet1 = new int[capMax];
+        vet2 = new String[capMax];
+        tam = 0;
+    }
+    
+    public int Capacidade()
+    {
+       return vet1.length; 
+    }
+    
+    public void AdicionaIni(int valor)
+    {
+        if(Capacidade() == tam)
+        {
+            System.out.println("Erro! Lista Cheia");
+        }
+        else
+        {
+            for(int i=tam;i>= 1;i--)
+            {
+                vet1[i] = vet1[i-1];
+            }
+            vet1[0] = valor;
+            tam++;
+        }           
+    }
+    //fila
+    public int RemoveIni()
+    {
+        int aux=-1;
+        if(tam==0)
+        {
+            System.out.println("Erro! Lista Vazia");
+        }
+        else
+        {
+            aux=vet1[0];
+            for(int i=0;i<tam;i++)
+            {
+                vet1[i]=vet1[i+1];
+            }
+            tam--;
+        }
+        return aux;        
+    }
+    
+    public void AdicionaFin(int valor)
+    {
+        if(Capacidade() == tam)
+        {
+            System.out.println("Erro! Lista Cheia");
+        }
+        else
+        {            
+            vet1[tam]=valor;
+            tam++;
+        }           
+    }
+    //pilha
+    public int RemoveFin()
+    {
+        int aux=-1;
+        if(tam==0)
+        {
+            System.out.println("Erro! Lista Vazia");
+        }
+        else
+        {
+            aux=vet1[tam-1];            
+            tam--;
+        }
+        return aux;        
+    }
+    
+    public void Exibe()
+    {
+        int print[]=new int[Capacidade()];
+        for (int i=0;i<tam;i++)
+        {
+            print[i]=vet1[i];
+            if(i%5==0)
+                System.out.println();
+            System.out.print((i+1)+"º: "+print[i]+"  ");
+        }
+        System.out.println();
+    } 
+    
+    public void Invert()
+    {
+        int aux[]=new int[Capacidade()];
+        int i;
+        for(i=0;i<Capacidade();i++)
+        {
+            aux[i]=vet1[i];
+            RemoveFin();                        
+        }
+        
+        for(i=0;i<Capacidade();i++)
+        {
+            AdicionaIni(aux[i]);
+        }        
+        Exibe();
+    }
+    public static void main(String[] args) 
+    {        
+        Atividade2 atv = new Atividade2(4);
+        for(int i=0;i<atv.Capacidade();i++)
+        {
+            atv.AdicionaFin(Integer.parseInt(JOptionPane.showInputDialog("Digite o "+(i+1)+"º Valor: ")));
+        }
+        atv.Exibe();
+        atv.Invert();
+    }
+    
